@@ -10,7 +10,7 @@ export function Scene2() {
       exit={{ opacity: 0, y: -100 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="flex gap-16 items-center w-full max-w-6xl px-12">
+      <div className="flex gap-[4vw] items-center w-full max-w-6xl px-[3vw]">
         <motion.div 
           className="flex-1"
           initial={{ opacity: 0, x: -50 }}
@@ -25,7 +25,7 @@ export function Scene2() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="bg-slate-900/80 border-l-4 border-emerald-500 p-6 rounded-r-xl"
+            className="bg-slate-900/80 border-l-4 border-emerald-500 p-[1.5vw] rounded-r-xl"
           >
             <p className="text-2xl font-mono text-slate-300 leading-relaxed">
               이미지(OCR 포함)에서 주민번호, 계좌번호 등<br/>
@@ -34,17 +34,17 @@ export function Scene2() {
           </motion.div>
         </motion.div>
 
-        <div className="flex-1 relative flex justify-center items-center h-96">
+        <div className="flex-1 relative flex justify-center items-center h-[35vh]">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="absolute w-64 h-64 border border-slate-700 bg-slate-900/50 rounded-2xl flex items-center justify-center overflow-hidden"
+            className="absolute w-[20vw] h-[20vw] border border-slate-700 bg-slate-900/50 rounded-2xl flex items-center justify-center overflow-hidden"
           >
             <ImageIcon size={80} className="text-slate-500" />
             <motion.div 
-              className="absolute top-0 left-0 w-full h-2 bg-emerald-400/50 shadow-[0_0_15px_#34d399]"
-              animate={{ y: [0, 256, 0] }}
+              className="absolute top-0 left-0 w-full h-[0.5vh] bg-emerald-400/50 shadow-[0_0_15px_#34d399]"
+              animate={{ y: ["0%", "100%", "0%"] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
             />
           </motion.div>

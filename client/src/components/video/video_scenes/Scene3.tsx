@@ -10,14 +10,14 @@ export function Scene3() {
       exit={{ opacity: 0 }}
       transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
     >
-      <div className="text-center mb-16">
+      <div className="text-center mb-[8vh]">
         <h1 className="text-7xl font-bold mb-4 font-display">
           Source Code <span className="text-purple-400">Leakage</span>
         </h1>
         <p className="text-2xl text-purple-200/80 font-mono">소스코드 유출 탐지</p>
       </div>
 
-      <div className="relative w-full max-w-5xl h-64 bg-[#0d1117] rounded-xl border border-slate-700 p-6 overflow-hidden flex items-center shadow-2xl">
+      <div className="relative w-full max-w-5xl h-[30vh] bg-[#0d1117] rounded-xl border border-slate-700 p-[2vw] overflow-hidden flex items-center shadow-2xl">
         <motion.div 
           className="absolute inset-0 opacity-20"
           initial={{ backgroundPosition: '0% 0%' }}
@@ -30,7 +30,7 @@ export function Scene3() {
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="z-10 flex gap-4 text-purple-400 font-mono text-xl"
+          className="z-10 flex gap-[1vw] text-purple-400 font-mono text-xl"
         >
           <div>
             <p>1</p><p>2</p><p>3</p>
@@ -46,7 +46,7 @@ export function Scene3() {
           initial={{ scale: 5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 1.5, type: 'spring', bounce: 0.5 }}
-          className="absolute right-12 top-1/2 -translate-y-1/2 text-red-500 flex flex-col items-center bg-black/80 p-6 rounded-2xl border-2 border-red-500 backdrop-blur-md"
+          className="absolute right-[3vw] top-1/2 -translate-y-1/2 text-red-500 flex flex-col items-center bg-black/80 p-[1.5vw] rounded-2xl border-2 border-red-500 backdrop-blur-md"
         >
           <ShieldAlert size={64} className="mb-2" />
           <span className="font-bold text-xl tracking-widest uppercase">LEAK DETECTED</span>

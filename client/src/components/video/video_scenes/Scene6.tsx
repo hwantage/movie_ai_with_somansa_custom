@@ -15,7 +15,7 @@ export function Scene6() {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="text-center mb-24"
+        className="text-center mb-[12vh]"
       >
         <h1 className="text-6xl font-display font-bold mb-4">
           File Extension <span className="text-rose-500">Spoofing</span>
@@ -23,16 +23,16 @@ export function Scene6() {
         <p className="text-2xl text-rose-200/80 font-mono">확장자 변조 유출 탐지</p>
       </motion.div>
 
-      <div className="flex items-center gap-12 relative">
+      <div className="flex items-center gap-[3vw] relative">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.6, type: 'spring' }}
           className="flex flex-col items-center"
         >
-          <div className="bg-slate-800 p-8 rounded-2xl border-2 border-slate-600 mb-4 relative shadow-xl">
+          <div className="bg-slate-800 p-[2vw] rounded-2xl border-2 border-slate-600 mb-[2vh] relative shadow-xl">
             <FileType size={80} className="text-blue-400" />
-            <div className="absolute -top-4 -right-4 bg-blue-500 text-white font-bold px-3 py-1 rounded-lg text-lg">
+            <div className="absolute -top-[1vw] -right-[1vw] bg-blue-500 text-white font-bold px-[0.75vw] py-[0.25vw] rounded-lg text-lg">
               .PDF
             </div>
           </div>
@@ -54,9 +54,9 @@ export function Scene6() {
           transition={{ delay: 0.8, type: 'spring' }}
           className="flex flex-col items-center"
         >
-          <div className="bg-red-950/50 p-8 rounded-2xl border-2 border-red-500 mb-4 relative shadow-[0_0_30px_rgba(225,29,72,0.3)]">
+          <div className="bg-red-950/50 p-[2vw] rounded-2xl border-2 border-red-500 mb-[2vh] relative shadow-[0_0_30px_rgba(225,29,72,0.3)]">
             <FileWarning size={80} className="text-red-500" />
-            <div className="absolute -top-4 -right-4 bg-red-600 text-white font-bold px-3 py-1 rounded-lg text-lg">
+            <div className="absolute -top-[1vw] -right-[1vw] bg-red-600 text-white font-bold px-[0.75vw] py-[0.25vw] rounded-lg text-lg">
               .EXE
             </div>
           </div>
@@ -68,7 +68,7 @@ export function Scene6() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="mt-20 text-2xl font-mono text-slate-300 text-center max-w-2xl bg-slate-900/80 py-4 px-8 rounded-full border border-slate-700"
+        className="mt-[10vh] text-2xl font-mono text-slate-300 text-center max-w-2xl bg-slate-900/80 py-[1vh] px-[2vw] rounded-full border border-slate-700"
       >
         실제 파일 유형과 확장자 불일치 여부 탐지
       </motion.p>

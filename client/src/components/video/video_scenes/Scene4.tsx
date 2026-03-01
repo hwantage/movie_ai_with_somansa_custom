@@ -10,13 +10,13 @@ export function Scene4() {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.8 }}
     >
-      <div className="grid grid-cols-2 gap-12 max-w-6xl w-full items-center">
-        <div className="relative h-80 flex items-center justify-center">
+      <div className="grid grid-cols-2 gap-[3vw] max-w-6xl w-full items-center px-[2vw]">
+        <div className="relative h-[35vh] flex items-center justify-center">
           <motion.div
             initial={{ rotateY: -90 }}
             animate={{ rotateY: 0 }}
             transition={{ delay: 0.4, duration: 1 }}
-            className="absolute w-48 h-48 bg-amber-500/10 border-2 border-amber-500 rounded-full flex items-center justify-center"
+            className="absolute w-[15vw] h-[15vw] bg-amber-500/10 border-2 border-amber-500 rounded-full flex items-center justify-center"
           >
             <Key size={80} className="text-amber-400" />
           </motion.div>
@@ -24,9 +24,9 @@ export function Scene4() {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 1.4, type: 'spring' }}
-            className="absolute w-64 h-64 border border-amber-500/30 rounded-full flex items-start justify-end"
+            className="absolute w-[20vw] h-[20vw] border border-amber-500/30 rounded-full flex items-start justify-end"
           >
-            <div className="bg-amber-500 text-black px-4 py-1 rounded-full font-bold text-sm mt-8 mr-4 shadow-[0_0_15px_#f59e0b]">
+            <div className="bg-amber-500 text-black px-[1vw] py-[0.25vw] rounded-full font-bold text-sm mt-[2vh] mr-[1vw] shadow-[0_0_15px_#f59e0b]">
               API KEY
             </div>
           </motion.div>
@@ -34,7 +34,7 @@ export function Scene4() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 1.8, type: 'spring' }}
-            className="absolute -right-8 bottom-12 bg-slate-900 border border-slate-700 p-4 rounded-xl shadow-2xl flex items-center gap-3"
+            className="absolute -right-[2vw] bottom-[3vh] bg-slate-900 border border-slate-700 p-[1vw] rounded-xl shadow-2xl flex items-center gap-[0.75vw]"
           >
             <Search className="text-blue-400" />
             <span className="font-mono text-sm text-slate-300">RegEx + AI Analysis</span>
@@ -49,8 +49,8 @@ export function Scene4() {
           <h1 className="text-6xl font-bold mb-4 font-display text-white leading-tight">
             <span className="text-amber-400">Credential</span><br/>Leakage Detection
           </h1>
-          <p className="text-2xl text-amber-200/80 mb-6 font-mono">API Key / 패스워드 유출 탐지</p>
-          <p className="text-2xl font-mono text-slate-400 border-l-2 border-amber-500 pl-6 py-2">
+          <p className="text-2xl text-amber-200/80 mb-[3vh] font-mono">API Key / 패스워드 유출 탐지</p>
+          <p className="text-2xl font-mono text-slate-400 border-l-2 border-amber-500 pl-[1.5vw] py-[0.5vh]">
             API Key, 토큰, 비밀번호<br/>
             정규식 + AI 혼합 탐지
           </p>

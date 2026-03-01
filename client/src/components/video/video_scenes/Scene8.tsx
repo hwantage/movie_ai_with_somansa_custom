@@ -14,7 +14,7 @@ export function Scene8() {
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="text-center mb-12"
+        className="text-center mb-[6vh]"
       >
         <h1 className="text-6xl font-display font-bold mb-4 text-white">
           <span className="text-orange-500">Prompt Injection</span> Detection
@@ -28,7 +28,7 @@ export function Scene8() {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.8, type: 'spring' }}
-          className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-2xl"
+          className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-2xl px-[2vw] py-[1.5vh]"
         >
           <div className="bg-slate-800 px-4 py-2 border-b border-slate-700 flex items-center gap-2">
             <Terminal size={16} className="text-slate-400" />
@@ -54,7 +54,7 @@ export function Scene8() {
           initial={{ scale: 0, rotate: -45 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ delay: 2.5, type: 'spring', bounce: 0.6 }}
-          className="absolute right-[2vw] bottom-[2vh] bg-red-600 text-white p-6 rounded-full shadow-[0_0_40px_rgba(220,38,38,0.6)] flex items-center justify-center border-4 border-black"
+          className="absolute right-[2vw] bottom-[2vh] bg-red-600 text-white p-[1.5vw] rounded-full shadow-[0_0_40px_rgba(220,38,38,0.6)] flex items-center justify-center border-4 border-black"
         >
           <ShieldAlert size={64} />
         </motion.div>

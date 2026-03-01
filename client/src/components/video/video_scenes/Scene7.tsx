@@ -10,7 +10,7 @@ export function Scene7() {
       exit={{ x: '-100%' }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="grid grid-cols-2 gap-16 w-full max-w-6xl px-12 items-center">
+      <div className="grid grid-cols-2 gap-[4vw] w-full max-w-6xl px-[3vw] items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}

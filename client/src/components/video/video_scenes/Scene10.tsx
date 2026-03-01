@@ -14,7 +14,7 @@ export function Scene10() {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="text-center mb-16"
+        className="text-center mb-[8vh]"
       >
         <h1 className="text-6xl font-display font-bold text-white mb-4">
           <span className="text-cyan-400">Anomalous</span> Activity
@@ -23,7 +23,7 @@ export function Scene10() {
         <p className="text-xl font-mono text-slate-400">근무 외 시간 이상 활동 탐지</p>
       </motion.div>
 
-      <div className="relative w-full max-w-4xl h-64 bg-slate-900 border border-slate-700 rounded-2xl p-8 flex items-end overflow-hidden">
+      <div className="relative w-full max-w-4xl h-[30vh] bg-slate-900 border border-slate-700 rounded-2xl p-[2vw] flex items-end overflow-hidden">
         {/* Grid lines */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-30" />
 
@@ -51,7 +51,7 @@ export function Scene10() {
         </svg>
 
         {/* Time markers */}
-        <div className="absolute top-4 left-4 flex gap-4 text-slate-500 font-mono text-sm">
+        <div className="absolute top-[1vh] left-[1vw] flex gap-[1vw] text-slate-500 font-mono text-sm">
           <div className="flex items-center gap-1"><Clock size={14} /> 09:00 - 18:00 (Normal)</div>
         </div>
 

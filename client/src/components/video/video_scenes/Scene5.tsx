@@ -14,20 +14,20 @@ export function Scene5() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="text-center mb-16"
+        className="text-center mb-[8vh]"
       >
         <h1 className="text-5xl font-bold font-display mb-4">Subject-Body <span className="text-orange-400">Context Mismatch</span></h1>
         <p className="text-2xl text-orange-200/80 mb-2 font-mono">제목-내용 맥락 불일치 탐지</p>
         <p className="text-xl font-mono text-slate-400">파일 제목과 본문 의미 불일치로 피싱·위장 판단</p>
       </motion.div>
 
-      <div className="flex items-center gap-8 relative w-full max-w-5xl justify-center">
+      <div className="flex items-center gap-[2vw] relative w-full max-w-5xl justify-center">
         {/* Subject Card */}
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.6, type: 'spring' }}
-          className="bg-slate-800 border border-slate-700 w-80 p-6 rounded-xl relative shadow-lg"
+          className="bg-slate-800 border border-slate-700 w-[20vw] p-[1.5vw] rounded-xl relative shadow-lg"
         >
           <div className="text-xs text-slate-400 mb-2 uppercase tracking-wider">File Subject</div>
           <div className="flex items-center gap-3 text-xl font-bold text-white">
@@ -51,7 +51,7 @@ export function Scene5() {
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.8, type: 'spring' }}
-          className="bg-slate-800 border border-red-900/50 w-80 p-6 rounded-xl relative shadow-lg overflow-hidden"
+          className="bg-slate-800 border border-red-900/50 w-[20vw] p-[1.5vw] rounded-xl relative shadow-lg overflow-hidden"
         >
           <motion.div 
             className="absolute inset-0 bg-red-500/10"
@@ -72,7 +72,7 @@ export function Scene5() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2 }}
-          className="absolute bottom-[5vh] left-1/2 -translate-x-1/2 bg-red-950/80 border border-red-500 px-6 py-3 rounded-full flex items-center gap-3 text-red-400 font-bold"
+          className="absolute bottom-[5vh] left-1/2 -translate-x-1/2 bg-red-950/80 border border-red-500 px-[1.5vw] py-[0.75vw] rounded-full flex items-center gap-[0.75vw] text-red-400 font-bold"
         >
           <AlertTriangle size={24} />
           MISMATCH DETECTED
