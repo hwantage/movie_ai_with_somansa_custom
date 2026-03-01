@@ -1,11 +1,21 @@
-// Video Template - Replace ReplitLoadingScene with your scenes
-
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useVideoPlayer } from '@/lib/video';
-import { ReplitLoadingScene } from './ReplitLoadingScene';
+import { 
+  Scene1, Scene2, Scene3, Scene4, Scene5, 
+  Scene6, Scene7, Scene8, Scene9, Scene10 
+} from './video_scenes';
 
 const SCENE_DURATIONS = {
-  loading: 99999999,
+  scene1: 4500,
+  scene2: 4500,
+  scene3: 4500,
+  scene4: 4500,
+  scene5: 4500,
+  scene6: 4500,
+  scene7: 4500,
+  scene8: 4500,
+  scene9: 4500,
+  scene10: 4500,
 };
 
 export default function VideoTemplate() {
@@ -15,15 +25,36 @@ export default function VideoTemplate() {
 
   return (
     <div
-      className="w-full h-screen overflow-hidden relative"
-      style={{ backgroundColor: 'var(--color-bg-light)' }}
+      className="w-full h-screen overflow-hidden relative text-white bg-black"
     >
-      {/* mode="wait" = sequential, "sync" = simultaneous, "popLayout" = new snaps in while old animates out */}
-      <AnimatePresence>
-        {/* Replace this with your scenes */}
-        {currentScene === 0 && (
-          <ReplitLoadingScene key="loading" />
-        )}
+      {/* Persistent Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-50 z-0" />
+      
+      {/* Scanning effect that persists and changes color based on scene */}
+      <motion.div 
+        className="absolute top-0 left-0 w-full h-1 z-10"
+        animate={{ 
+          backgroundColor: currentScene % 2 === 0 ? '#00F0FF' : '#10B981',
+          boxShadow: currentScene % 2 === 0 ? '0 0 20px #00F0FF' : '0 0 20px #10B981',
+          y: ['-10vh', '110vh']
+        }}
+        transition={{ 
+          y: { duration: 3, ease: 'linear', repeat: Infinity },
+          backgroundColor: { duration: 1 }
+        }}
+      />
+
+      <AnimatePresence mode="popLayout">
+        {currentScene === 0 && <Scene1 key="scene1" />}
+        {currentScene === 1 && <Scene2 key="scene2" />}
+        {currentScene === 2 && <Scene3 key="scene3" />}
+        {currentScene === 3 && <Scene4 key="scene4" />}
+        {currentScene === 4 && <Scene5 key="scene5" />}
+        {currentScene === 5 && <Scene6 key="scene6" />}
+        {currentScene === 6 && <Scene7 key="scene7" />}
+        {currentScene === 7 && <Scene8 key="scene8" />}
+        {currentScene === 8 && <Scene9 key="scene9" />}
+        {currentScene === 9 && <Scene10 key="scene10" />}
       </AnimatePresence>
     </div>
   );
