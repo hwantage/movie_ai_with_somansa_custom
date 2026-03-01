@@ -2,6 +2,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import bgImage from '@assets/ai_button_1772379874621.png';
 import aiChat from '@assets/ai_button_click_1772379944482.png';
+import aiIconNew from '@assets/image_1772380184802.png';
 
 export function SceneIntro2() {
   const [showChat, setShowChat] = useState(false);
@@ -84,8 +85,10 @@ export function SceneIntro2() {
               boxShadow: { duration: 1.5, repeat: Infinity },
               scale: { duration: 0.2 }
             }}
-            className="w-full h-full rounded-full border-2 border-purple-400/50 cursor-pointer"
-          />
+            className="w-full h-full rounded-full border-2 border-purple-400/50 cursor-pointer overflow-hidden flex items-center justify-center bg-white shadow-lg"
+          >
+            <img src={aiIconNew} alt="AI Button" className="w-[80%] h-[80%] object-contain" />
+          </motion.div>
           {/* Simulated Cursor */}
           <motion.div
             initial={{ opacity: 0, x: 100, y: 100 }}
