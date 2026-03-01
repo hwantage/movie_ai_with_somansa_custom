@@ -1,12 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useVideoPlayer } from '@/lib/video';
 import { 
-  SceneIntro, Scene1, Scene2, Scene3, Scene4, Scene5, 
+  SceneIntro, SceneIntro2, Scene1, Scene2, Scene3, Scene4, Scene5, 
   Scene6, Scene7, Scene8, Scene9, Scene10 
 } from './video_scenes';
 
 const SCENE_DURATIONS = {
   sceneIntro: 4000,
+  sceneIntro2: 8000,
   scene1: 8000,
   scene2: 8000,
   scene3: 8000,
@@ -47,16 +48,17 @@ export default function VideoTemplate() {
 
       <AnimatePresence mode="popLayout">
         {currentScene === 0 && <SceneIntro key="sceneIntro" />}
-        {currentScene === 1 && <Scene1 key="scene1" />}
-        {currentScene === 2 && <Scene2 key="scene2" />}
-        {currentScene === 3 && <Scene3 key="scene3" />}
-        {currentScene === 4 && <Scene4 key="scene4" />}
-        {currentScene === 5 && <Scene5 key="scene5" />}
-        {currentScene === 6 && <Scene6 key="scene6" />}
-        {currentScene === 7 && <Scene7 key="scene7" />}
-        {currentScene === 8 && <Scene8 key="scene8" />}
-        {currentScene === 9 && <Scene9 key="scene9" />}
-        {currentScene === 10 && <Scene10 key="scene10" />}
+        {currentScene === 1 && <SceneIntro2 key="sceneIntro2" />}
+        {currentScene === 2 && <Scene1 key="scene1" />}
+        {currentScene === 3 && <Scene2 key="scene2" />}
+        {currentScene === 4 && <Scene3 key="scene3" />}
+        {currentScene === 5 && <Scene4 key="scene4" />}
+        {currentScene === 6 && <Scene5 key="scene5" />}
+        {currentScene === 7 && <Scene6 key="scene6" />}
+        {currentScene === 8 && <Scene7 key="scene7" />}
+        {currentScene === 9 && <Scene8 key="scene8" />}
+        {currentScene === 10 && <Scene9 key="scene9" />}
+        {currentScene === 11 && <Scene10 key="scene10" />}
       </AnimatePresence>
     </div>
   );
