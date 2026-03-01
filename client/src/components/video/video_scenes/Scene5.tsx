@@ -17,6 +17,7 @@ export function Scene5() {
         className="text-center mb-16"
       >
         <h1 className="text-5xl font-bold font-display mb-4">Subject-Body <span className="text-orange-400">Context Mismatch</span></h1>
+        <p className="text-2xl text-orange-200/80 mb-2 font-mono">제목-내용 맥락 불일치 탐지</p>
         <p className="text-xl font-mono text-slate-400">파일 제목과 본문 의미 불일치로 피싱·위장 판단</p>
       </motion.div>
 

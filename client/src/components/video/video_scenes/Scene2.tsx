@@ -17,9 +17,10 @@ export function Scene2() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <h1 className="text-6xl font-bold mb-6 tracking-tight font-display leading-tight">
+          <h1 className="text-6xl font-bold mb-4 tracking-tight font-display leading-tight">
             Image-based <br/><span className="text-emerald-400">PII Detection</span>
           </h1>
+          <p className="text-2xl text-emerald-200/80 mb-6 font-mono">이미지내 개인정보, 금융정보 탐지</p>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

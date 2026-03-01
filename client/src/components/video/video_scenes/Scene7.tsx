@@ -16,10 +16,11 @@ export function Scene7() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h1 className="text-5xl font-display font-bold mb-6 leading-tight">
+          <h1 className="text-5xl font-display font-bold mb-4 leading-tight">
             Generative AI <br/>
             <span className="text-indigo-400">Output Leakage</span>
           </h1>
+          <p className="text-2xl text-indigo-200/80 mb-6 font-mono">생성형 AI를 통한 유출 탐지</p>
           <p className="text-2xl font-mono text-slate-400 leading-relaxed border-l-4 border-indigo-500 pl-6">
             LLM 결과물에 기밀 / PII<br/>
             포함 여부 실시간 탐지

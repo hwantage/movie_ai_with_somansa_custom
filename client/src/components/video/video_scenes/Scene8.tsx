@@ -19,6 +19,7 @@ export function Scene8() {
         <h1 className="text-6xl font-display font-bold mb-4 text-white">
           <span className="text-orange-500">Prompt Injection</span> Detection
         </h1>
+        <p className="text-2xl text-orange-200/80 mb-2 font-mono">프롬프트 인젝션 탐지</p>
         <p className="text-2xl font-mono text-slate-400">시스템 프롬프트 탈취·우회 시도 탐지</p>
       </motion.div>
 

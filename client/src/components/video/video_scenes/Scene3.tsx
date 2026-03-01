@@ -14,6 +14,7 @@ export function Scene3() {
         <h1 className="text-7xl font-bold mb-4 font-display">
           Source Code <span className="text-purple-400">Leakage</span>
         </h1>
+        <p className="text-2xl text-purple-200/80 font-mono">소스코드 유출 탐지</p>
       </div>
 
       <div className="relative w-full max-w-5xl h-64 bg-[#0d1117] rounded-xl border border-slate-700 p-6 overflow-hidden flex items-center shadow-2xl">

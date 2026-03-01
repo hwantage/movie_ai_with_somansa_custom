@@ -11,14 +11,17 @@ export function Scene6() {
       exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
       transition={{ duration: 0.8 }}
     >
-      <motion.h1 
+      <motion.div 
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="text-6xl font-display font-bold text-center mb-24"
+        className="text-center mb-24"
       >
-        File Extension <span className="text-rose-500">Spoofing</span>
-      </motion.h1>
+        <h1 className="text-6xl font-display font-bold mb-4">
+          File Extension <span className="text-rose-500">Spoofing</span>
+        </h1>
+        <p className="text-2xl text-rose-200/80 font-mono">확장자 변조 유출 탐지</p>
+      </motion.div>
 
       <div className="flex items-center gap-12 relative">
         <motion.div

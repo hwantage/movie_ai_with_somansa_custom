@@ -46,9 +46,10 @@ export function Scene4() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <h1 className="text-6xl font-bold mb-6 font-display text-white leading-tight">
+          <h1 className="text-6xl font-bold mb-4 font-display text-white leading-tight">
             <span className="text-amber-400">Credential</span><br/>Leakage Detection
           </h1>
+          <p className="text-2xl text-amber-200/80 mb-6 font-mono">API Key / 패스워드 유출 탐지</p>
           <p className="text-2xl font-mono text-slate-400 border-l-2 border-amber-500 pl-6 py-2">
             API Key, 토큰, 비밀번호<br/>
             정규식 + AI 혼합 탐지

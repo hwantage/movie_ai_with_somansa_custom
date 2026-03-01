@@ -19,7 +19,8 @@ export function Scene10() {
         <h1 className="text-6xl font-display font-bold text-white mb-4">
           <span className="text-cyan-400">Anomalous</span> Activity
         </h1>
-        <p className="text-2xl font-mono text-slate-400">근무 외 시간 이상 활동 탐지</p>
+        <p className="text-2xl text-cyan-200/80 mb-2 font-mono">비업무 시간 이상 행위 탐지</p>
+        <p className="text-xl font-mono text-slate-400">근무 외 시간 이상 활동 탐지</p>
       </motion.div>
 
       <div className="relative w-full max-w-4xl h-64 bg-slate-900 border border-slate-700 rounded-2xl p-8 flex items-end overflow-hidden">

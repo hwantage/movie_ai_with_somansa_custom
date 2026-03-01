@@ -49,10 +49,11 @@ export function Scene9() {
           transition={{ delay: 0.8, duration: 0.8 }}
           className="flex-1"
         >
-          <h1 className="text-5xl font-display font-bold leading-tight mb-6">
+          <h1 className="text-5xl font-display font-bold leading-tight mb-4">
             Unanalyzable <br/>
             <span className="text-slate-400">Encrypted File</span>
           </h1>
+          <p className="text-2xl text-slate-400/80 mb-6 font-mono">분석불가 암호화 파일 탐지</p>
           <div className="bg-red-500/10 border border-red-500/50 p-6 rounded-xl backdrop-blur-sm">
             <p className="text-2xl font-mono text-red-200">
               zip, pdf, xls 파일 암호 설정으로<br/>분석 불가 유출 시도 파일 탐지
