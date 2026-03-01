@@ -43,8 +43,8 @@ export function Scene2() {
           >
             <ImageIcon size={80} className="text-slate-500" />
             <motion.div 
-              className="absolute top-0 left-0 w-full h-[0.5vh] bg-emerald-400/50 shadow-[0_0_15px_#34d399]"
-              animate={{ y: ["0%", "100%", "0%"] }}
+              className="absolute left-0 w-full h-[2px] bg-emerald-400 shadow-[0_0_15px_2px_#34d399]"
+              animate={{ top: ["0%", "100%", "0%"] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
             />
           </motion.div>
