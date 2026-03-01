@@ -10,3 +10,4 @@ export { Scene7 } from './Scene7';
 export { Scene8 } from './Scene8';
 export { Scene9 } from './Scene9';
 export { Scene10 } from './Scene10';
+export { SceneOutro } from './SceneOutro';

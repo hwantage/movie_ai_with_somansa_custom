@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useVideoPlayer } from '@/lib/video';
 import { 
   SceneIntro, SceneIntro2, Scene1, Scene2, Scene3, Scene4, Scene5, 
-  Scene6, Scene7, Scene8, Scene9, Scene10 
+  Scene6, Scene7, Scene8, Scene9, Scene10, SceneOutro 
 } from './video_scenes';
 
 const SCENE_DURATIONS = {
@@ -18,6 +18,7 @@ const SCENE_DURATIONS = {
   scene8: 8000,
   scene9: 8000,
   scene10: 8000,
+  sceneOutro: 5000,
 };
 
 export default function VideoTemplate() {
@@ -59,6 +60,7 @@ export default function VideoTemplate() {
         {currentScene === 9 && <Scene8 key="scene8" />}
         {currentScene === 10 && <Scene9 key="scene9" />}
         {currentScene === 11 && <Scene10 key="scene10" />}
+        {currentScene === 12 && <SceneOutro key="sceneOutro" />}
       </AnimatePresence>
     </div>
   );
