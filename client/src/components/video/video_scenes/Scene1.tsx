@@ -40,7 +40,7 @@ export function Scene1() {
           <h1 className="text-6xl font-bold mb-4 tracking-tight font-display">
             <span className="text-cyan-400">QR Code</span> Phishing Detection
           </h1>
-          <p className="text-2xl text-cyan-200/80 mb-8 font-mono">QA 코드를 통한 Qshing 탐지</p>
+          <p className="text-2xl text-cyan-200/80 mb-8 font-mono">QR 코드를 통한 Qshing 탐지</p>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
