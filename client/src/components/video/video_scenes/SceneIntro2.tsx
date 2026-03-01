@@ -1,83 +1,115 @@
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import aiIcon from '@assets/image_1772379161703.png';
-import aiChat from '@assets/image_1772379197403.png';
+import bgImage from '@assets/ai_button_1772379874621.png';
+import aiChat from '@assets/ai_button_click_1772379944482.png';
 
 export function SceneIntro2() {
   const [showChat, setShowChat] = useState(false);
+  const containerControls = useAnimation();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // Sequence:
+    // 0-2s: Initial view
+    // 2-3s: Zoom into bottom right
+    // 4s: Click effect on button & show chat
+    
+    const sequence = async () => {
+      // Wait before zoom
+      await new Promise(r => setTimeout(r, 2000));
+      
+      // Zoom to bottom right
+      await containerControls.start({
+        scale: 1.5,
+        x: '-25%',
+        y: '-25%',
+        transition: { duration: 1.5, ease: 'easeInOut' }
+      });
+      
+      // Wait a moment
+      await new Promise(r => setTimeout(r, 500));
+      
+      // Show chat
       setShowChat(true);
-    }, 4500);
-    return () => clearTimeout(timer);
-  }, []);
+    };
+    
+    sequence();
+  }, [containerControls]);
 
   return (
     <motion.div 
-      className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-[#0f172a]"
+      className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-[#0f172a] overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
       transition={{ duration: 0.8 }}
     >
-      {/* Background Dashboard Mockup */}
-      <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center grayscale mix-blend-overlay" />
-      
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)] z-0" />
-
-      {/* Main Message */}
+      {/* Main Message (Stays on top and centered) */}
       <motion.div
-        initial={{ y: 50, opacity: 0 }}
+        initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.8, ease: "circOut" }}
-        className="z-10 text-center mb-12"
+        className="absolute top-[10vh] z-30 text-center w-full"
       >
-        <h1 className="text-5xl md:text-6xl font-display font-bold text-white mb-6 leading-tight">
+        <h1 className="text-5xl md:text-6xl font-display font-bold text-white mb-6 leading-tight drop-shadow-lg">
           AI 기반으로 <span className="text-cyan-400">위험도 판단</span> 및<br/>
           <span className="text-rose-500">이상 징후 탐지</span>를 수행합니다.
         </h1>
       </motion.div>
 
-      {/* Interactive elements simulation */}
-      <div className="relative w-full h-[60vh] max-w-6xl z-10 border border-slate-700/50 bg-slate-900/50 rounded-2xl shadow-2xl overflow-hidden flex items-center justify-center">
-        
-        {/* Placeholder UI for dashboard */}
-        <div className="absolute inset-0 p-8 flex flex-wrap gap-6 opacity-30">
-           <div className="w-[30%] h-32 bg-slate-800 rounded-xl" />
-           <div className="w-[65%] h-32 bg-slate-800 rounded-xl" />
-           <div className="w-full h-64 bg-slate-800 rounded-xl" />
-        </div>
+      {/* Interactive elements simulation container */}
+      <motion.div 
+        className="absolute bottom-[10vh] w-[80vw] h-[65vh] z-10 border-2 border-slate-700/50 rounded-xl shadow-2xl overflow-hidden bg-white origin-center"
+        animate={containerControls}
+      >
+        {/* Background Dashboard Mockup using provided image */}
+        <img src={bgImage} alt="Dashboard Background" className="absolute inset-0 w-full h-full object-cover" />
 
-        {/* AI Notification Icon (Flashing) */}
+        {/* AI Notification Highlight (Flashing effect over the existing button in the image) */}
         <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 1.5, type: 'spring' }}
-          className="absolute bottom-8 right-8 cursor-pointer z-30"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-[3%] right-[2%] w-[4.5%] aspect-square rounded-full z-20"
         >
           <motion.div
             animate={{ 
-              boxShadow: ['0 0 0px 0px rgba(99, 102, 241, 0)', '0 0 20px 10px rgba(99, 102, 241, 0.6)', '0 0 0px 0px rgba(99, 102, 241, 0)']
+              boxShadow: [
+                '0 0 0px 0px rgba(139, 92, 246, 0)', 
+                '0 0 30px 15px rgba(139, 92, 246, 0.8)', 
+                '0 0 0px 0px rgba(139, 92, 246, 0)'
+              ],
+              scale: showChat ? [1, 0.9, 1] : 1 // click simulation
             }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="rounded-full bg-white flex items-center justify-center p-2"
+            transition={{ 
+              boxShadow: { duration: 1.5, repeat: Infinity },
+              scale: { duration: 0.2 }
+            }}
+            className="w-full h-full rounded-full border-2 border-purple-400/50 cursor-pointer"
+          />
+          {/* Simulated Cursor */}
+          <motion.div
+            initial={{ opacity: 0, x: 100, y: 100 }}
+            animate={showChat ? { opacity: [0, 1, 1, 0], x: 0, y: 0 } : { opacity: 0, x: 100, y: 100 }}
+            transition={{ duration: 1, times: [0, 0.2, 0.8, 1] }}
+            className="absolute top-[50%] left-[50%] w-[3vw] h-[3vw] z-50 pointer-events-none"
           >
-             <img src={aiIcon} alt="AI Alert" className="w-16 h-16 object-contain" />
+             <svg viewBox="0 0 24 24" fill="white" stroke="black" strokeWidth="1" className="w-full h-full drop-shadow-md">
+               <path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.42c.41 0 .75-.34.75-.75V3.21c0-.41-.34-.75-.75-.75H6.25c-.41 0-.75.34-.75.75Z" />
+             </svg>
           </motion.div>
         </motion.div>
 
         {/* AI Chat Window */}
         <motion.div
-          initial={{ y: 50, opacity: 0, scale: 0.9, originX: 1, originY: 1 }}
-          animate={showChat ? { y: 0, opacity: 1, scale: 1 } : { y: 50, opacity: 0, scale: 0.9 }}
+          initial={{ y: 20, opacity: 0, scale: 0.9, originX: 1, originY: 1 }}
+          animate={showChat ? { y: 0, opacity: 1, scale: 1 } : { y: 20, opacity: 0, scale: 0.9 }}
           transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-          className="absolute bottom-28 right-8 z-20 w-[400px] shadow-2xl origin-bottom-right"
+          className="absolute bottom-[10%] right-[3%] w-[40%] max-w-[500px] z-30 shadow-2xl origin-bottom-right"
         >
-          <img src={aiChat} alt="AI Chat Window" className="w-full rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-slate-600" />
+          <img src={aiChat} alt="AI Chat Window" className="w-full h-auto rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-slate-300" />
         </motion.div>
 
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
