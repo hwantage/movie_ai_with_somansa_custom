@@ -1,4 +1,4 @@
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import bgImage from '@assets/ai_button_1772379874621.png';
 import aiChat from '@assets/ai_button_click_1772379944482.png';
@@ -45,17 +45,33 @@ export function SceneIntro2() {
       transition={{ duration: 0.8 }}
     >
       {/* Main Message (Stays on top and centered) */}
-      <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8, ease: "circOut" }}
-        className="absolute top-[10vh] z-30 text-center w-full"
-      >
-        <h1 className="text-5xl md:text-6xl font-display font-bold text-white mb-6 leading-tight drop-shadow-lg">
-          AI 기반으로 <span className="text-cyan-400">위험도 판단</span> 및<br/>
-          <span className="text-rose-500">이상 징후 탐지</span>를 수행합니다.
-        </h1>
-      </motion.div>
+      <div className="absolute top-[10vh] z-30 text-center w-full h-[20vh] flex items-center justify-center">
+        <AnimatePresence mode="wait">
+          {!showChat ? (
+            <motion.h1
+              key="msg1"
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -30, opacity: 0, filter: 'blur(10px)', scale: 0.9 }}
+              transition={{ duration: 0.5, ease: "circOut" }}
+              className="text-5xl md:text-6xl font-display font-bold text-white leading-tight drop-shadow-lg absolute"
+            >
+              AI 기반으로 <span className="text-cyan-400">위험도 판단</span> 및<br/>
+              <span className="text-rose-500">이상 징후 탐지</span>를 수행합니다.
+            </motion.h1>
+          ) : (
+            <motion.h1
+              key="msg2"
+              initial={{ y: 30, opacity: 0, scale: 0.8 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
+              className="text-5xl md:text-6xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 leading-tight drop-shadow-[0_0_30px_rgba(192,132,252,0.3)] absolute"
+            >
+              AI Assistant 를 통한<br/>실시간 위협 알림
+            </motion.h1>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* Interactive elements simulation container */}
       <motion.div 
