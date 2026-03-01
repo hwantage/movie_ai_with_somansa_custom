@@ -28,16 +28,16 @@ export function Scene9() {
           {/* Scanner beam blocked */}
           <motion.div
             initial={{ width: 0, opacity: 0 }}
-            animate={{ width: 60, opacity: 1 }}
+            animate={{ width: 80, opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.5 }}
-            className="absolute top-1/2 right-12 h-2 bg-blue-500 shadow-[0_0_10px_#3b82f6] -translate-y-1/2 z-0"
+            className="absolute top-1/2 -right-8 h-2 bg-blue-500 shadow-[0_0_10px_#3b82f6] -translate-y-1/2 z-0"
           />
           
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 1.5, type: 'spring' }}
-            className="absolute top-1/2 right-8 -translate-y-1/2 bg-red-500 p-3 rounded-full z-10"
+            className="absolute top-1/2 -right-8 -translate-y-1/2 bg-red-500 p-3 rounded-full z-10"
           >
             <ShieldAlert size={32} className="text-white" />
           </motion.div>
