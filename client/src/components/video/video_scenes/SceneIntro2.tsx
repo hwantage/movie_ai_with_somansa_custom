@@ -60,15 +60,17 @@ export function SceneIntro2() {
               <span className="text-rose-500">이상 징후 탐지</span>를 수행합니다.
             </motion.h1>
           ) : (
-            <motion.h1
+            <motion.div
               key="msg2"
               initial={{ y: 30, opacity: 0, scale: 0.8 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
-              className="text-5xl md:text-6xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 leading-tight drop-shadow-[0_0_30px_rgba(192,132,252,0.3)] absolute"
+              className="absolute bg-[#0f172a]/80 backdrop-blur-md px-10 py-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_40px_rgba(34,211,238,0.2)]"
             >
-              AI Assistant 를 통한<br/>실시간 위협 알림
-            </motion.h1>
+              <h1 className="text-5xl md:text-6xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 leading-tight">
+                AI Assistant 를 통한<br/>실시간 위협 알림
+              </h1>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
@@ -94,27 +96,14 @@ export function SceneIntro2() {
                 '0 0 0px 0px rgba(139, 92, 246, 0)', 
                 '0 0 30px 15px rgba(139, 92, 246, 0.8)', 
                 '0 0 0px 0px rgba(139, 92, 246, 0)'
-              ],
-              scale: showChat ? [1, 0.9, 1] : 1 // click simulation
+              ]
             }}
             transition={{ 
-              boxShadow: { duration: 1.5, repeat: Infinity },
-              scale: { duration: 0.2 }
+              boxShadow: { duration: 1.5, repeat: Infinity }
             }}
-            className="w-full h-full rounded-full border-2 border-purple-400/50 cursor-pointer overflow-hidden flex items-center justify-center bg-white shadow-lg"
+            className="w-full h-full rounded-full border-2 border-purple-400/50 overflow-hidden flex items-center justify-center bg-white shadow-lg"
           >
             <img src={aiIconNew} alt="AI Button" className="w-[80%] h-[80%] object-contain" />
-          </motion.div>
-          {/* Simulated Cursor */}
-          <motion.div
-            initial={{ opacity: 0, x: 100, y: 100 }}
-            animate={showChat ? { opacity: [0, 1, 1, 0], x: 0, y: 0 } : { opacity: 0, x: 100, y: 100 }}
-            transition={{ duration: 1, times: [0, 0.2, 0.8, 1] }}
-            className="absolute top-[50%] left-[50%] w-[3vw] h-[3vw] z-50 pointer-events-none"
-          >
-             <svg viewBox="0 0 24 24" fill="white" stroke="black" strokeWidth="1" className="w-full h-full drop-shadow-md">
-               <path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.42c.41 0 .75-.34.75-.75V3.21c0-.41-.34-.75-.75-.75H6.25c-.41 0-.75.34-.75.75Z" />
-             </svg>
           </motion.div>
         </motion.div>
 
