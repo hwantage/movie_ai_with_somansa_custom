@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import logo from '@assets/logo_somansa_1772378409619.png';
+import logo from '@assets/logo_somansa_1772378833267.png';
 
 export function SceneIntro() {
   return (
@@ -17,7 +17,7 @@ export function SceneIntro() {
           transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
           className="mb-[6vh] bg-white/10 p-[1.5vw] rounded-2xl backdrop-blur-md border border-white/20"
         >
-          <img src={logo} alt="Somansa Logo" className="h-[12vh] object-contain brightness-0 invert" />
+          <img src={logo} alt="Somansa Logo" className="h-[24vh] object-contain" />
         </motion.div>
 
         <motion.div 
