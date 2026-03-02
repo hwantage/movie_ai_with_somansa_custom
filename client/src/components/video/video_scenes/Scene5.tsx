@@ -72,7 +72,7 @@ export function Scene5() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2 }}
-          className="absolute bottom-[5vh] left-1/2 -translate-x-1/2 bg-red-950/80 border border-red-500 px-[1.5vw] py-[0.75vw] rounded-full flex items-center gap-[0.75vw] text-red-400 font-bold"
+          className="absolute bottom-[1vh] left-1/2 -translate-x-1/2 bg-red-950/80 border border-red-500 px-[1.5vw] py-[0.75vw] rounded-full flex items-center gap-[0.75vw] text-red-400 font-bold"
         >
           <AlertTriangle size={24} />
           MISMATCH DETECTED
