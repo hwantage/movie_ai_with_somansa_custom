@@ -1,8 +1,11 @@
+import { useState, useRef, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useVideoPlayer } from '@/lib/video';
-import { 
-  SceneIntro, SceneIntro2, Scene1, Scene2, Scene3, Scene4, Scene5, 
-  Scene6, Scene7, Scene8, Scene9, Scene10, SceneOutro 
+import { TabRecorder } from '@/lib/video/recorder';
+import { RecordingOverlay, type OverlayMode } from './RecordingOverlay';
+import {
+  SceneIntro, SceneIntro2, Scene1, Scene2, Scene3, Scene4, Scene5,
+  Scene6, Scene7, Scene8, Scene9, Scene10, SceneOutro
 } from './video_scenes';
 
 const SCENE_DURATIONS = {
@@ -21,27 +24,24 @@ const SCENE_DURATIONS = {
   sceneOutro: 5000,
 };
 
-export default function VideoTemplate() {
+function ScenePlayer({ onAllScenesComplete }: { onAllScenesComplete?: () => void }) {
   const { currentScene } = useVideoPlayer({
     durations: SCENE_DURATIONS,
+    loop: false,
+    onAllScenesComplete,
   });
 
   return (
-    <div
-      className="w-full h-screen overflow-hidden relative text-white bg-black"
-    >
-      {/* Persistent Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-50 z-0" />
-      
+    <>
       {/* Scanning effect that persists and changes color based on scene */}
-      <motion.div 
+      <motion.div
         className="absolute top-0 left-0 w-full h-1 z-10"
-        animate={{ 
+        animate={{
           backgroundColor: currentScene % 2 === 0 ? '#00F0FF' : '#10B981',
           boxShadow: currentScene % 2 === 0 ? '0 0 20px #00F0FF' : '0 0 20px #10B981',
           y: ['-10vh', '110vh']
         }}
-        transition={{ 
+        transition={{
           y: { duration: 3, ease: 'linear', repeat: Infinity },
           backgroundColor: { duration: 1 }
         }}
@@ -62,6 +62,75 @@ export default function VideoTemplate() {
         {currentScene === 11 && <Scene10 key="scene10" />}
         {currentScene === 12 && <SceneOutro key="sceneOutro" />}
       </AnimatePresence>
+    </>
+  );
+}
+
+export default function VideoTemplate() {
+  const recorderRef = useRef(new TabRecorder());
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [playbackKey, setPlaybackKey] = useState(0);
+  const [overlayMode, setOverlayMode] = useState<OverlayMode>('setup');
+
+  const handleStartWithRecording = useCallback(async () => {
+    try {
+      await recorderRef.current.start();
+      setIsRecording(true);
+      setIsPlaying(true);
+      setOverlayMode('hidden');
+    } catch {
+      // User denied screen share — stay on setup screen
+    }
+  }, []);
+
+  const handleStartWithoutRecording = useCallback(() => {
+    setIsRecording(false);
+    setIsPlaying(true);
+    setOverlayMode('hidden');
+  }, []);
+
+  const handleAllScenesComplete = useCallback(() => {
+    if (isRecording) {
+      recorderRef.current.stop();
+      setOverlayMode('complete');
+    } else {
+      setOverlayMode('complete');
+    }
+    setIsPlaying(false);
+  }, [isRecording]);
+
+  const handleDownload = useCallback(() => {
+    recorderRef.current.downloadWebM();
+  }, []);
+
+  const handleReplay = useCallback(() => {
+    recorderRef.current.reset();
+    setIsRecording(false);
+    setIsPlaying(false);
+    setPlaybackKey(k => k + 1);
+    setOverlayMode('setup');
+  }, []);
+
+  return (
+    <div className="w-full h-screen overflow-hidden relative text-white bg-black">
+      {/* Persistent Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-50 z-0" />
+
+      {isPlaying && (
+        <ScenePlayer
+          key={playbackKey}
+          onAllScenesComplete={handleAllScenesComplete}
+        />
+      )}
+
+      <RecordingOverlay
+        mode={overlayMode}
+        onStartWithRecording={handleStartWithRecording}
+        onStartWithoutRecording={handleStartWithoutRecording}
+        onDownload={handleDownload}
+        onReplay={handleReplay}
+      />
     </div>
   );
 }

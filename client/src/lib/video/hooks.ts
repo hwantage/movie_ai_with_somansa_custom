@@ -1,13 +1,6 @@
-// Video player hook - handles recording lifecycle, scene advancement, and looping
+// Video player hook - handles scene advancement and looping
 
 import { useState, useEffect, useRef } from 'react';
-
-declare global {
-  interface Window {
-    startRecording?: () => Promise<void>;
-    stopRecording?: () => void;
-  }
-}
 
 export interface SceneDurations {
   [key: string]: number;
@@ -16,6 +9,7 @@ export interface SceneDurations {
 export interface UseVideoPlayerOptions {
   durations: SceneDurations;
   onVideoEnd?: () => void;
+  onAllScenesComplete?: () => void;
   loop?: boolean;
 }
 
@@ -27,7 +21,7 @@ export interface UseVideoPlayerReturn {
 }
 
 export function useVideoPlayer(options: UseVideoPlayerOptions): UseVideoPlayerReturn {
-  const { durations, onVideoEnd, loop = true } = options;
+  const { durations, onVideoEnd, onAllScenesComplete, loop = true } = options;
 
   // Captured once on mount -- durations must be a static object
   const sceneKeys = useRef(Object.keys(durations)).current;
@@ -36,11 +30,6 @@ export function useVideoPlayer(options: UseVideoPlayerOptions): UseVideoPlayerRe
 
   const [currentScene, setCurrentScene] = useState(0);
   const [hasEnded, setHasEnded] = useState(false);
-
-  // Start recording on mount
-  useEffect(() => {
-    window.startRecording?.();
-  }, []);
 
   // Scene advancement
   useEffect(() => {
@@ -55,7 +44,7 @@ export function useVideoPlayer(options: UseVideoPlayerOptions): UseVideoPlayerRe
         onVideoEnd?.();
 
         if (!hasEnded) {
-          window.stopRecording?.();
+          onAllScenesComplete?.();
           setHasEnded(true);
         }
 
@@ -66,7 +55,7 @@ export function useVideoPlayer(options: UseVideoPlayerOptions): UseVideoPlayerRe
     }, currentDuration);
 
     return () => clearTimeout(timer);
-  }, [currentScene, totalScenes, durationsArray, hasEnded, loop, onVideoEnd]);
+  }, [currentScene, totalScenes, durationsArray, hasEnded, loop, onVideoEnd, onAllScenesComplete]);
 
   return {
     currentScene,

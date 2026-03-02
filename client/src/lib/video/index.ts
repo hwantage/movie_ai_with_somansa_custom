@@ -1,7 +1,10 @@
-// Video template library - hook and animation presets
+// Video template library - hook, animation presets, and recorder
 
 export { useVideoPlayer, useSceneTimer } from './hooks';
 export type { SceneDurations, UseVideoPlayerOptions, UseVideoPlayerReturn } from './hooks';
+
+export { TabRecorder } from './recorder';
+export type { RecorderState, StateChangeListener } from './recorder';
 
 export {
   springs,
