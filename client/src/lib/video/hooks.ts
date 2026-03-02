@@ -1,6 +1,6 @@
 // Video player hook - handles scene advancement and looping
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export interface SceneDurations {
   [key: string]: number;
@@ -18,6 +18,9 @@ export interface UseVideoPlayerReturn {
   totalScenes: number;
   currentSceneKey: string;
   hasEnded: boolean;
+  goToScene: (scene: number) => void;
+  nextScene: () => void;
+  prevScene: () => void;
 }
 
 export function useVideoPlayer(options: UseVideoPlayerOptions): UseVideoPlayerReturn {
@@ -30,6 +33,20 @@ export function useVideoPlayer(options: UseVideoPlayerOptions): UseVideoPlayerRe
 
   const [currentScene, setCurrentScene] = useState(0);
   const [hasEnded, setHasEnded] = useState(false);
+
+  const goToScene = useCallback((scene: number) => {
+    const clamped = Math.max(0, Math.min(scene, totalScenes - 1));
+    setHasEnded(false);
+    setCurrentScene(clamped);
+  }, [totalScenes]);
+
+  const nextScene = useCallback(() => {
+    setCurrentScene(prev => (prev < totalScenes - 1 ? prev + 1 : prev));
+  }, [totalScenes]);
+
+  const prevScene = useCallback(() => {
+    setCurrentScene(prev => (prev > 0 ? prev - 1 : prev));
+  }, []);
 
   // Scene advancement
   useEffect(() => {
@@ -62,6 +79,9 @@ export function useVideoPlayer(options: UseVideoPlayerOptions): UseVideoPlayerRe
     totalScenes,
     currentSceneKey: sceneKeys[currentScene],
     hasEnded,
+    goToScene,
+    nextScene,
+    prevScene,
   };
 }
 

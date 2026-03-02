@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useVideoPlayer } from '@/lib/video';
 import { TabRecorder } from '@/lib/video/recorder';
@@ -9,27 +9,42 @@ import {
 } from './video_scenes';
 
 const SCENE_DURATIONS = {
-  sceneIntro: 4000,
-  sceneIntro2: 8000,
-  scene1: 8000,
-  scene2: 8000,
-  scene3: 8000,
-  scene4: 8000,
-  scene5: 8000,
-  scene6: 8000,
-  scene7: 8000,
-  scene8: 8000,
-  scene9: 8000,
-  scene10: 8000,
+  sceneIntro: 5000,
+  sceneIntro2: 6000,
+  scene1: 6000,
+  scene2: 6000,
+  scene3: 6000,
+  scene4: 6000,
+  scene5: 6000,
+  scene6: 6000,
+  scene7: 6000,
+  scene8: 6000,
+  scene9: 6000,
+  scene10: 6000,
   sceneOutro: 5000,
 };
 
-function ScenePlayer({ onAllScenesComplete }: { onAllScenesComplete?: () => void }) {
-  const { currentScene } = useVideoPlayer({
+const SCENE_NAMES = [
+  'Intro', 'Intro2', 'Scene1', 'Scene2', 'Scene3', 'Scene4', 'Scene5',
+  'Scene6', 'Scene7', 'Scene8', 'Scene9', 'Scene10', 'Outro',
+];
+
+function ScenePlayer({ onAllScenesComplete, isRecording = false }: { onAllScenesComplete?: () => void; isRecording?: boolean }) {
+  const { currentScene, goToScene, nextScene, prevScene } = useVideoPlayer({
     durations: SCENE_DURATIONS,
     loop: false,
     onAllScenesComplete,
   });
+
+  // Keyboard navigation (left/right arrows only)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') nextScene();
+      else if (e.key === 'ArrowLeft') prevScene();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextScene, prevScene]);
 
   return (
     <>
@@ -62,6 +77,25 @@ function ScenePlayer({ onAllScenesComplete }: { onAllScenesComplete?: () => void
         {currentScene === 11 && <Scene10 key="scene10" />}
         {currentScene === 12 && <SceneOutro key="sceneOutro" />}
       </AnimatePresence>
+
+      {/* Scene indicator bar — hidden during recording */}
+      {!isRecording && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-black/60 backdrop-blur-sm rounded-full px-3 py-2">
+          {SCENE_NAMES.map((name, i) => (
+            <button
+              key={name}
+              onClick={() => goToScene(i)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                i === currentScene
+                  ? 'bg-cyan-400 shadow-[0_0_8px_#00F0FF] scale-125'
+                  : 'bg-white/30 hover:bg-white/60'
+              }`}
+              title={`${name} (${i})`}
+            />
+          ))}
+          <span className="ml-2 text-xs font-mono text-white/60">{SCENE_NAMES[currentScene]}</span>
+        </div>
+      )}
     </>
   );
 }
@@ -120,6 +154,7 @@ export default function VideoTemplate() {
       {isPlaying && (
         <ScenePlayer
           key={playbackKey}
+          isRecording={isRecording}
           onAllScenesComplete={handleAllScenesComplete}
         />
       )}
