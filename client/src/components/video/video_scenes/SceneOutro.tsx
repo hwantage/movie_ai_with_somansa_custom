@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import logo from '@assets/logo_somansa_1772378833267.png';
-import character from '@assets/6-2_1772381052779.png';
+import character from '@assets/1-2.png';
 
 export function SceneOutro() {
   return (
@@ -16,26 +16,26 @@ export function SceneOutro() {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-          className="flex flex-col items-center justify-center"
+          className="flex flex-row items-center justify-center mb-10"
         >
           {/* Character */}
-          <motion.img 
-            src={character} 
-            alt="Somansa Character" 
-            className="h-[35vh] object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] mb-8"
-            animate={{ 
-              y: [0, -10, 0] 
+          <motion.img
+            src={character}
+            alt="Somansa Character"
+            className="h-[14vh] object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.2)] mr-6"
+            animate={{
+              y: [0, -10, 0]
             }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
             }}
           />
-          
+
           {/* Logo container */}
-          <motion.div 
-            className="bg-white/10 p-[1.5vw] rounded-2xl backdrop-blur-md border border-white/20 mb-10"
+          <motion.div
+            className="bg-white/10 p-[1.5vw] rounded-2xl backdrop-blur-md border border-white/20"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8, type: "spring" }}
