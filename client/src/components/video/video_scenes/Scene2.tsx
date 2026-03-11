@@ -34,8 +34,8 @@ export function Scene2() {
             className="bg-slate-900/80 border-l-4 border-emerald-500 p-[1.5vw] rounded-r-xl"
           >
             <p className="text-2xl font-mono text-slate-300 leading-relaxed">
-              이미지(OCR 포함)에서 주민번호, 계좌번호 등<br/>
-              개인정보 식별 및 개수에 따른 위협 탐지
+              이미지(OCR)에서 주민번호, 계좌번호<br/>
+              개인정보 식별 및 위협 탐지
             </p>
           </motion.div>
         </motion.div>

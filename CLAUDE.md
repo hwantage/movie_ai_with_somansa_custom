@@ -53,3 +53,6 @@ npm run check        # TypeScript 타입 검사 (tsc --noEmit)
 2. `client/src/components/video/video_scenes/index.ts`에서 export 추가
 3. `VideoTemplate.tsx`의 `SCENE_DURATIONS`에 지속시간 항목 추가
 4. `VideoTemplate.tsx`에 조건부 렌더링 추가 (`{currentScene === N && <SceneN key="sceneN" />}`)
+
+
+모든 응답은 한글로 한다.

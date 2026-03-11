@@ -9,18 +9,18 @@ import {
 } from './video_scenes';
 
 const SCENE_DURATIONS = {
-  sceneIntro: 5000,
+  sceneIntro: 5500,
   sceneIntro2: 6000,
   scene1: 6000,
   scene2: 6000,
   scene3: 6000,
   scene4: 6000,
-  scene5: 6000,
-  scene6: 6000,
-  scene7: 6000,
-  scene8: 6000,
-  scene9: 6000,
-  scene10: 6000,
+  scene5: 4000,
+  scene6: 4000,
+  scene7: 4000,
+  scene8: 4000,
+  scene9: 4000,
+  scene10: 4000,
   sceneOutro: 5000,
 };
 
@@ -30,11 +30,13 @@ const SCENE_NAMES = [
 ];
 
 function ScenePlayer({ onAllScenesComplete, isRecording = false }: { onAllScenesComplete?: () => void; isRecording?: boolean }) {
-  const { currentScene, goToScene, nextScene, prevScene } = useVideoPlayer({
+  let { currentScene, goToScene, nextScene, prevScene } = useVideoPlayer({
     durations: SCENE_DURATIONS,
     loop: false,
     onAllScenesComplete,
   });
+
+  //currentScene = 0;
 
   // Keyboard navigation (left/right arrows only)
   useEffect(() => {

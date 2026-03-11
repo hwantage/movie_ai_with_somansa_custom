@@ -45,35 +45,45 @@ export function SceneIntro2() {
       transition={{ duration: 0.8 }}
     >
       {/* Main Message (Stays on top and centered) */}
-      <div className="absolute top-[10vh] z-30 text-center w-full h-[20vh] flex items-center justify-center">
+      <div className="absolute top-[10vh] left-0 z-30 text-center w-full h-[20vh] flex items-center justify-center">
         <AnimatePresence mode="wait">
           {!showChat ? (
-            <motion.h1
+            <motion.div
               key="msg1"
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -30, opacity: 0, filter: 'blur(10px)', scale: 0.9 }}
               transition={{ duration: 0.5, ease: "circOut" }}
-              className="text-5xl md:text-6xl font-display font-bold text-white leading-tight drop-shadow-lg absolute"
+              className="absolute bg-black/70 backdrop-blur-md px-10 py-6 rounded-2xl border border-slate-600/50 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
             >
-              AI 기반으로 <span className="text-cyan-400">위험도 판단</span> 및<br/>
-              <span className="text-rose-500">이상 징후 탐지</span>를 수행합니다.
-            </motion.h1>
-          ) : (
-            <motion.div
-              key="msg2"
-              initial={{ y: 30, opacity: 0, scale: 0.8 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
-              className="absolute bg-[#0f172a]/80 backdrop-blur-md px-10 py-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_40px_rgba(34,211,238,0.2)]"
-            >
-              <h1 className="text-5xl md:text-6xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 leading-tight">
-                AI Assistant 를 통한<br/>실시간 위협 알림
+              <h1 className="text-5xl md:text-6xl font-display font-bold text-white leading-tight">
+                AI 기반으로 <span className="text-cyan-400">위험도 판단</span> 및<br/>
+                <span className="text-rose-500">이상 징후 탐지</span>를 수행합니다.
               </h1>
             </motion.div>
+          ) : (
+            <div key="msg2-placeholder" />
           )}
         </AnimatePresence>
       </div>
+
+      {/* "AI Assistant" box — bottom left, shown after chat opens */}
+      <AnimatePresence>
+        {showChat && (
+          <motion.div
+            key="msg2"
+            initial={{ y: 30, opacity: 0, scale: 0.8 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
+            className="absolute bottom-[20vh] left-[10vw] z-30 bg-[#0f172a]/80 backdrop-blur-md px-10 py-6 rounded-2xl border border-cyan-500/30 shadow-[0_0_40px_rgba(34,211,238,0.2)]"
+          >
+            <h1 className="text-5xl md:text-6xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 leading-tight">
+              AI Assistant 를 통한<br/>실시간 위협 알림
+            </h1>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Interactive elements simulation container */}
       <motion.div 

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FileLock, Search, ShieldAlert } from 'lucide-react';
+import { FileLock, Lock } from 'lucide-react';
 
 export function Scene9() {
   return (
@@ -39,7 +39,7 @@ export function Scene9() {
             transition={{ delay: 1.5, type: 'spring' }}
             className="absolute top-1/2 -right-8 -translate-y-1/2 bg-red-500 p-3 rounded-full z-10"
           >
-            <ShieldAlert size={32} className="text-white" />
+            <Lock size={32} className="text-white" />
           </motion.div>
         </div>
 

